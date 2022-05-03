@@ -32,8 +32,23 @@ void timer_singleton::hit_the_clock()
     {
         // Clocks stop ticking and print time measured time
         stop = clock.now();
-        auto duration =  std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-        std::cout << "Measured time = " << duration.count() << " microseconds" << std::endl;
+        auto duration =  std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start);
+        auto c(duration.count());
+        std::ostringstream oss;
+        oss << std::setfill('0')                // set field fill character to '0'
+            << (c % 1000000000000) / 1000000000 // format seconds
+            << " sec "
+            << std::setw(3)                     // set width of milliseconds field
+            << (c % 1000000000) / 1000000       // format milliseconds
+            << " millisec "
+            << std::setw(3)                     // set width of microseconds field
+            << (c % 1000000) / 1000             // format microseconds
+            << " microsec "
+            << std::setw(3)                     // set width of nanoseconds field
+            << c % 1000                         // format nanoseconds
+            << " nanosec ";
+        auto formatted(oss.str());
+        std::cout << "Measured time = " << formatted << std::endl;
         ++counter;
     }
 

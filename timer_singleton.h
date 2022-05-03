@@ -3,6 +3,8 @@
 #pragma once
 #include <iostream>
 #include <chrono>
+#include <iomanip>
+#include <sstream>
 
 class timer_singleton
 {
