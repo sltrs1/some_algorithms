@@ -9,7 +9,7 @@
 class euclid
 {
 public:
-    static size_t gcd(size_t a, size_t b);
+    static size_t gcd(size_t a, size_t b); // Greatest common divisor with Euclid's algoithm
 };
 
 #endif // EUCLID_H
