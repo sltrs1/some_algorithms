@@ -1,7 +1,7 @@
 #include "fibonacci.h"
 
 
-int fibonacci::get(int n)
+int fibonacci::get_v(int n)
 {
     assert(n >= 0);
 
@@ -21,6 +21,42 @@ int fibonacci::get(int n)
     }
 
     return fib_arr[n];
+}
+
+
+int fibonacci::get_um(int n)
+{
+    assert(n >= 0);
+
+    std::unordered_map<int, int> fib_um;
+
+    if(n == 0)
+        return 0;
+    if (n == 1)
+        return 1;
+
+    fib_um[0] = 0;
+    fib_um[1] = 1;
+
+    for (size_t i = 2; i <= n; ++i)
+    {
+        fib_um[i] = fib_um[i-1] + fib_um[i-2];
+    }
+
+    return fib_um[n];
+
+}
+
+int fibonacci::get_naiive(int n)
+{
+    assert(n >= 0);
+
+    if(n == 0)
+        return 0;
+    if (n == 1)
+        return 1;
+
+    return get_naiive(n - 1) + get_naiive(n - 2);
 }
 
 
