@@ -1,7 +1,7 @@
 #include "fibonacci.h"
 
 
-int fibonacci::get_v(int n)
+int fibonacci::get_vec(int n)
 {
     assert(n >= 0);
 
@@ -57,6 +57,28 @@ int fibonacci::get_naiive(int n)
         return 1;
 
     return get_naiive(n - 1) + get_naiive(n - 2);
+}
+
+int fibonacci::get_vars(int n)
+{
+    assert(n >= 0);
+
+    if(n == 0)
+        return 0;
+    if (n == 1)
+        return 1;
+
+    int prev = 0;
+    int curr = 1;
+
+    for (size_t i = 2; i <= n; ++i)
+    {
+        int new_curr = prev + curr;
+        prev = curr;
+        curr = new_curr;
+    }
+
+    return curr;
 }
 
 
