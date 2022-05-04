@@ -1,37 +1,33 @@
 #include "timer_singleton.h"
 
-timer_singleton * timer_singleton::instance = nullptr;
-
-timer_singleton::timer_singleton()
+timer_singleton::timer_singleton() : clock(std::chrono::high_resolution_clock()),
+                                     start(clock.now()),
+                                     stop(start),
+                                     counter(0)
 {
-    clock = std::chrono::high_resolution_clock();
-    start = clock.now();
-    stop = clock.now();
-    counter = 0;
 }
 
 timer_singleton * timer_singleton::getInstance()
 {
-    if (instance == nullptr)
-    {
-        instance = new timer_singleton();
-    }
-    return instance;
+    static timer_singleton instance;
+    return & instance;
 }
 
 void timer_singleton::hit_the_clock()
 {
+    // Snapshot time
+    auto now = clock.now();
 
     if (counter % 2 == 0)
     {
         // Clocks start ticking
-        start = clock.now();
+        start = now;
         ++counter;
     }
     else
     {
         // Clocks stop ticking and print time measured time
-        stop = clock.now();
+        stop = now;
         auto duration =  std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start);
         auto c(duration.count());
         std::ostringstream oss;

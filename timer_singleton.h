@@ -15,7 +15,6 @@ public:
     void hit_the_clock();
 private:
     timer_singleton();
-    static timer_singleton * instance;
     std::chrono::high_resolution_clock clock;
     std::chrono::high_resolution_clock::time_point start;
     std::chrono::high_resolution_clock::time_point stop;
