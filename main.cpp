@@ -20,10 +20,12 @@ int main()
     int64_t n = 41;
     int m = 255;
 
-    std::cout << "N-th (" << n << ") fib = ";
-    timer->hit_the_clock();
-    std::cout << fibonacci::get_naiive(n) << std::endl;
+    auto fib = fibonacci::get_vars(n);
+    std::cout << "N-th (" << n << ") fib = " << fib << std::endl;
+
     std::cout << "Naiive recursive implementation" << std::endl;
+    timer->hit_the_clock();
+    fibonacci::get_naiive(n);
     timer->hit_the_clock();
 
     std::cout << "Implementation with std::vector as memory" << std::endl;
