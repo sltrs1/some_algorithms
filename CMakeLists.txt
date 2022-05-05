@@ -11,4 +11,6 @@ add_executable(some_algorithms main.cpp
                                fibonacci.h
                                fibonacci.cpp
                                euclid.h
-                               euclid.cpp)
+                               euclid.cpp
+                               knapsack.h
+                               knapsack.cpp)
